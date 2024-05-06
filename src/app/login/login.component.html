@@ -1,4 +1,7 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="logo-container">
+    <img src="/assets/img/A&A.jpg" alt="Logo da AA Soluções">
+  </div>
   <div class="form-group">
     <label for="username">E-mail</label>
     <input
@@ -14,16 +17,26 @@
       Por favor, insira um e-mail válido.
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-group position-relative">
     <label for="password">Senha</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password"
-      formControlName="password"
-      required
-      placeholder="Senha"
-    >
+    <div class="input-group">
+      <input
+        [type]="hidePassword ? 'password' : 'text'"
+        class="form-control"
+        id="password"
+        formControlName="password"
+        required
+        placeholder="Senha"
+      >
+      <div class="btn-view-password">
+        <button type="button" (click)="togglePasswordVisibility()" class="btn">
+          <img *ngIf="hidePassword; else elseBlock" src="/assets/svg/view_off.svg" alt="Mostrar senha">
+          <ng-template #elseBlock>
+            <img src="/assets/svg/view.svg" alt="Esconder senha">
+          </ng-template>
+        </button>
+      </div>
+    </div>
   </div>
   <button type="submit" class="btn btn-primary" [class.disabled]="!loginForm.valid">Entrar</button>
   <div class="link-container">

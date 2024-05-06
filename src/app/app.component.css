@@ -1,7 +1,11 @@
+
+
 main {
   display: flex;
   justify-content: center;
   align-items: center;
   height: calc(100vh - 10px - 10px);
-  background-color:#F1F0EE;
+  width: 100%;
+  background-color: #F1F0EE;
+
 }

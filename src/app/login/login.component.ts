@@ -14,11 +14,18 @@ export class LoginComponent implements OnInit {
   });
 
   formSubmitted = false;
+  hidePassword = true;
 
   ngOnInit() {
     this.loginForm.get('username')?.setValidators(Validators.required);
     this.loginForm.get('password')?.setValidators(Validators.required);
   }
+
+
+
+    togglePasswordVisibility() {
+      this.hidePassword = !this.hidePassword;
+    }
 
   onSubmit(): void {
     this.formSubmitted = true;
