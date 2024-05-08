@@ -1,0 +1,75 @@
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 20%;
+  background-color: #f1f1f1;
+}
+
+li {
+  padding: 8px 16px;
+  border-bottom: 1px solid #bbb;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+.side-menu {
+  position: fixed;
+  top: 10%;
+  left: 0;
+  height: 90%;
+  width: 20%;
+  overflow: auto;
+  transition: width 0.5s;
+  background-color: #bbb;
+}
+
+.side-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+.side-menu li {
+  padding: 8px 16px;
+  border-bottom: 1px solid #bbb;
+}
+
+.side-menu li:last-child {
+  border-bottom: none;
+}
+
+.side-menu .fas {
+  margin-right: 10px;
+}
+
+.side-menu.minimized .fas {
+  margin-right: 0;
+}
+
+.side-menu.minimized li {
+  text-indent: -9999px;
+}
+
+.side-menu a {
+  color: inherit; /* herda a cor do texto do elemento pai */
+  text-decoration: none; /* remove o sublinhado */
+}
+
+.side-menu a:hover {
+  color: inherit; /* mantém a cor do texto ao passar o mouse */
+  text-decoration: underline; /* adiciona sublinhado ao passar o mouse */
+}
+
+.dropdown-menu {
+  position: static;
+  transform: none;
+  will-change: auto;
+  border: none; /* Remove a borda */
+
+}
+

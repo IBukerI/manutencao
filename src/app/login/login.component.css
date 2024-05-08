@@ -1,9 +1,8 @@
 form {
-  max-width: 100%;
-  max-height: 100vh;
-  margin: 0 auto;
-  overflow-y: auto;
-
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -29,6 +28,7 @@ button {
 input[type="email"],
 input[type="password"] {
   border: 1px solid #ddd;
+  width: 300px; /* Ajuste este valor para o tamanho desejado */
 }
 
 

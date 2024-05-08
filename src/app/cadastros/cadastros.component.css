@@ -1,0 +1,21 @@
+/* cadastros.component.css */
+/* cadastros.component.css */
+
+.item {
+  text-align: center; /* centraliza o texto */
+  margin-bottom: 1rem; /* adiciona espaço abaixo de cada item */
+  font-size: 1.5rem; /* aumenta o tamanho do texto */
+}
+
+.item i {
+  display: block; /* faz o ícone aparecer em sua própria linha */
+  margin-bottom: 0.5rem; /* adiciona espaço entre o ícone e o texto */
+  font-size: 2rem; /* aumenta o tamanho do ícone */
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid pink; /* Adiciona uma borda rosa */
+  height: 100%; /* Ajusta a altura para ocupar todo o espaço disponível */
+}

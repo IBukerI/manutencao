@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import Swal from  'sweetalert2';
 
 @Component({
   selector: 'app-forgot-password',
@@ -11,12 +12,20 @@ export class ForgotPasswordComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      // add your form controls here
+      'username': ['', Validators.required]
     });
   }
 
   onSubmit() {
-    // handle form submission
+    if (this.form.valid) {
+      Swal.fire({
+      title: 'Enviado!',
+      text: 'Uma nova Senha foi enviada ao seu e-mail.',
+      icon: 'success',
+      confirmButtonColor: '#f39d19',
+      confirmButtonText: 'OK'
+      })
+    }
   }
 
   onBack() {

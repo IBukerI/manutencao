@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-login',
@@ -21,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.loginForm.get('password')?.setValidators(Validators.required);
   }
 
-
+  constructor(private router: Router) { }
 
     togglePasswordVisibility() {
       this.hidePassword = !this.hidePassword;
@@ -31,6 +34,7 @@ export class LoginComponent implements OnInit {
     this.formSubmitted = true;
     if (this.loginForm.valid) {
       console.log('valido');
+      this.router.navigate(['/pagina-inicial']);
     }
     console.log('this.formSubmitted', this.formSubmitted);
   }

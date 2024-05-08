@@ -1,1 +1,20 @@
-<p>side-menu works!</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<div class="side-menu">
+  <ul>
+    <li><a routerLink="/pagina-inicial"><i class="fas fa-chart-line"></i>Dashboard</a></li>
+    <li class="dropdown">
+      <a routerLink="/cadastros"><i class="fas fa-user"></i> Cadastros</a>
+      <a class="dropdown-toggle" role="button" (click)="toggleDropdown($event)"><span class="caret"></span></a>
+      <ul class="dropdown-menu" [class.show]="dropdownOpen">
+        <li><a routerLink="">Clientes</a></li>
+        <li><a routerLink="">Equipamentos</a></li>
+        <li><a routerLink="">Produtos</a></li>
+        <li><a routerLink="">Peças</a></li>
+        <!-- <li><a routerLink="/cadastro2">Cadastro 2</a></li> -->
+        <!-- Adicione mais links de cadastro conforme necessário -->
+      </ul>
+    </li>
+    <li><i class="fas fa-wrench"></i> Ordem de Serviços</li>
+  </ul>
+</div>

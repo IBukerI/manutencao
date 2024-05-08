@@ -9,6 +9,10 @@
   background-color: #DD371D;
 }
 
+.btn.btn-secondary:hover {
+  background-color: #DD371D;
+}
+
 .btn.btn-primary.disabled {
   pointer-events: none;
   opacity: 0.6;
@@ -19,4 +23,20 @@
   border: 1px solid #A1AEB1;
   color: white;
   cursor: pointer;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* styles.css */
+
+a {
+  color: inherit; /* herda a cor do texto do elemento pai */
+  text-decoration: none; /* remove o sublinhado */
+}
+
+a:hover {
+  color: inherit; /* mantém a cor do texto ao passar o mouse */
+  text-decoration: underline; /* adiciona sublinhado ao passar o mouse */
 }

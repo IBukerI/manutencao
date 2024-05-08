@@ -7,12 +7,7 @@
   position: fixed;
   top: 0;
   align-items: center; /* Adicionado para centralizar o logo verticalmente */
-  height: 60px; /* Adicionado para definir uma altura específica para o cabeçalho */
+  height: 10% /* Adicionado para definir uma altura específica para o cabeçalho */
 }
 
-.logo {
-  display: flex;
-  align-self: flex-start;
-  width: 50px;
-  height: 240px;
-}
+

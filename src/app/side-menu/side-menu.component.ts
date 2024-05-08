@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class SideMenuComponent {
 
+
+  dropdownOpen = false;
+
+  toggleDropdown(event: Event) {
+    event.preventDefault();
+    this.dropdownOpen = !this.dropdownOpen;
+  }
 }

@@ -1,0 +1,8 @@
+
+.botao-container {
+  display: flex;
+}
+
+.botao-container button:first-child {
+  margin-right: 20px; /* Ajuste este valor para o espaço desejado */
+}

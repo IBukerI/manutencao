@@ -1,0 +1,50 @@
+<app-side-menu></app-side-menu>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+  <div class="form-field" >
+    <input type="radio" formControlName="tipo" value="Pessoa Física" (change)="onTipoChange('Pessoa Física')"> Pessoa Física
+    <input type="radio" formControlName="tipo" value="Pessoa Jurídica" (change)="onTipoChange('Pessoa Jurídica')"> Pessoa Jurídica
+  </div>
+
+  <div class="form-field" *ngIf="form.get('tipo')?.value === 'Pessoa Física'">
+    <input type="text" formControlName="Nome Completo" placeholder="Nome">
+  </div>
+
+  <div class="form-field" *ngIf="form.get('tipo')?.value === 'Pessoa Física'">
+    <input type="number" formControlName="CPF" placeholder="CPF">
+  </div>
+
+  <div class="form-field" *ngIf="form.get('tipo')?.value === 'Pessoa Jurídica'">
+    <input type="text" formControlName="cnpj" placeholder="CNPJ">
+  </div>
+  <div class="button-container" *ngIf="form.get('tipo')?.value === 'Pessoa Jurídica'">
+  <button type="submit" class="btn btn-primary" (click)="buscarDadosCNPJ()">Buscar Dados</button>
+  </div>
+
+  <div class="form-field" *ngIf="form.get('tipo')?.value === 'Pessoa Jurídica'">
+    <input type="text" formControlName="razaoSocial" placeholder="Razão Social" readonly>
+  </div>
+
+  <div class="form-field" *ngIf="form.get('tipo')?.value === 'Pessoa Jurídica'">
+  <input type="text" formControlName="nomeFantasia" placeholder="Nome Fantansia" readonly>
+  </div>
+
+
+  <div class="form-field">
+    <input type="number" formControlName="Telefone" placeholder="Telefone">
+  </div>
+
+  <div class="form-field">
+    <input type="text" formControlName="CEP" placeholder="CEP">
+  </div>
+
+  <!-- Repita para os outros campos -->
+
+  <div class="button-container">
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Salvar</button>
+    <button type="button" class="btn btn-secondary" (click)="onBack()">Voltar</button>
+  </div>
+</form>
+
+
+
