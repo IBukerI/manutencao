@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ConsultaCnpjService } from '../consulta-cnpj.service';
 
 
+
 @Component({
   selector: 'app-cadastro-component',
   templateUrl: './cadastro-component.component.html',
@@ -19,14 +20,21 @@ export class CadastroComponentComponent implements OnInit {
       cpf: [''],
       razaoSocial: [''],
       nomeFantasia: [''],
-      cnpj: ['']
+      cnpj: ['', [Validators.minLength(14), Validators.required]],
+      cepj: [''],
+      cepF: [''],
+      telefone: [''],
     });
 
   constructor(private fb: FormBuilder, private router: Router, private consultaCnpjService: ConsultaCnpjService) { }
 
-    ngOnInit() {
+  ngOnInit() {
+    // código de inicialização aqui...
+  }
 
-    }
+  // restante do código...
+
+
 
      onTipoChange(tipo: string) {
       //   if (tipo === 'Pessoa Física') {
@@ -70,6 +78,7 @@ export class CadastroComponentComponent implements OnInit {
 
           this.form.get('razaoSocial')?.setValue(data.razao_social);
           this.form.get('nomeFantasia')?.setValue(data.nome_fantasia);
+          this.form.get('cepj')?.setValue(data.cep);
         },
         error => {
           console.error('Erro ao buscar dados do CNPJ:', error);

@@ -1,8 +1,13 @@
 
-.button-container {
-  display: flex;
-  justify-content: space-between; /* Isso coloca um espaço igual entre os botões */
+
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 
 .button-container .btn {
   margin: 0 10px; /* Adiciona uma margem de 10px à esquerda e à direita de cada botão */
@@ -23,4 +28,18 @@
 
 .form-field > * {
   flex: 0 0 50%;
+}
+
+input.ng-invalid.ng-touched {
+  border-color: #dc3545;
+}
+
+.alert {
+  color: #dc3545; /* cor vermelha */
+  font-size: 12px; /* tamanho pequeno */
+  margin-top: 5px; /* espaço acima do texto */
+}
+
+.form-group .btn {
+  margin: 0 10px; /* Adiciona uma margem de 10px à esquerda e à direita de cada botão */
 }

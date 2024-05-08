@@ -14,8 +14,8 @@ main {
   width: 80%; /* Ajuste a largura aqui */
   background-color: #F1F0EE;
   margin-left: 20%;
-  justify-content: center;
-  align-items: center;/* A cor de fundo desejada *//* Adicione margem à esquerda para acomodar o menu lateral */
+  justify-content: center; /* Alinhe os itens ao início */
+  align-items: center;
 }
 
 

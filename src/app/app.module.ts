@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,6 +19,8 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { ClientesMockService } from './clientes/clientes-mock.service';
 import { CadastroComponentComponent } from './cadastro-component/cadastro-component.component';
 import { HttpClientModule } from '@angular/common/http';
+
+
 
 
 @NgModule({
@@ -44,6 +47,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatDialogModule,
     HttpClientModule,
+
+
+
   ],
   providers: [ClientesMockService],
   bootstrap: [AppComponent]

@@ -1,42 +1,68 @@
 <app-side-menu></app-side-menu>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
-  <div class="form-field" >
-    <input type="radio" formControlName="tipo" value="Pessoa Física" (change)="onTipoChange('Pessoa Física')"> Pessoa Física
-    <input type="radio" formControlName="tipo" value="Pessoa Jurídica" (change)="onTipoChange('Pessoa Jurídica')"> Pessoa Jurídica
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="container mt-5">
+  <div class="form-group">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" formControlName="tipo" value="Pessoa Física" (change)="onTipoChange('Pessoa Física')">
+      <label class="form-check-label">Pessoa Física</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" formControlName="tipo" value="Pessoa Jurídica" (change)="onTipoChange('Pessoa Jurídica')">
+      <label class="form-check-label">Pessoa Jurídica</label>
+    </div>
   </div>
 
-  <div class="form-field" *ngIf="form.get('tipo')?.value === 'Pessoa Física'">
-    <input type="text" formControlName="Nome Completo" placeholder="Nome">
+  <div class="form-group" *ngIf="form.get('tipo')?.value === 'Pessoa Física'">
+    <label for="nome">Nome</label>
+    <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Nome">
   </div>
 
-  <div class="form-field" *ngIf="form.get('tipo')?.value === 'Pessoa Física'">
-    <input type="number" formControlName="CPF" placeholder="CPF">
+  <div class="form-group" *ngIf="form.get('tipo')?.value === 'Pessoa Física'">
+    <label for="sobrenome">Sobrenome</label>
+    <input type="text" id="sobrenome" class="form-control" formControlName="sobrenome" placeholder="Sobrenome">
   </div>
 
-  <div class="form-field" *ngIf="form.get('tipo')?.value === 'Pessoa Jurídica'">
-    <input type="text" formControlName="cnpj" placeholder="CNPJ">
-  </div>
-  <div class="button-container" *ngIf="form.get('tipo')?.value === 'Pessoa Jurídica'">
-  <button type="submit" class="btn btn-primary" (click)="buscarDadosCNPJ()">Buscar Dados</button>
+  <div class="form-group" *ngIf="form.get('tipo')?.value === 'Pessoa Física'">
+    <label for="cpf">CPF</label>
+    <input type="text" id="cpf" class="form-control" formControlName="cpf" placeholder="CPF">
   </div>
 
-  <div class="form-field" *ngIf="form.get('tipo')?.value === 'Pessoa Jurídica'">
-    <input type="text" formControlName="razaoSocial" placeholder="Razão Social" readonly>
+  <div class="form-group" *ngIf="form.get('tipo')?.value === 'Pessoa Jurídica'">
+    <label for="cnpj">CNPJ</label>
+    <input type="text" id="cnpj" class="form-control" formControlName="cnpj" placeholder="CNPJ" (blur)="buscarDadosCNPJ()">
+    <div *ngIf="form.get('cnpj')?.invalid && form.get('cnpj')?.touched" class="alert alert-danger">
+      Campo CNPJ é obrigatório
+    </div>
   </div>
 
-  <div class="form-field" *ngIf="form.get('tipo')?.value === 'Pessoa Jurídica'">
-  <input type="text" formControlName="nomeFantasia" placeholder="Nome Fantansia" readonly>
+  <div class="form-group" *ngIf="form.get('tipo')?.value === 'Pessoa Jurídica'">
+    <label for="razaoSocial">Razão Social</label>
+    <input type="text" id="razaoSocial" class="form-control" formControlName="razaoSocial" placeholder="Razão Social" readonly>
+  </div>
+
+  <div class="form-group" *ngIf="form.get('tipo')?.value === 'Pessoa Jurídica'">
+    <label for="nomeFantasia">Nome Fantasia</label>
+    <input type="text" id="nomeFantasia" class="form-control" formControlName="nomeFantasia" placeholder="Nome Fantasia" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="telefone">Telefone</label>
+    <input type="text" id="telefone" class="form-control" formControlName="telefone" placeholder="Telefone">
+  </div>
+
+  <div class="form-group" *ngIf="form.get('tipo')?.value === 'Pessoa Jurídica'">
+    <label for="cep">CEP</label>
+    <input type="text" id="cep" class="form-control" formControlName="cepj" placeholder="CEP" readonly>
+  </div>
+
+  <div class="form-group" *ngIf="form.get('tipo')?.value === 'Pessoa Física'">
+    <label for="cep">CEP</label>
+    <input type="text" id="cep" class="form-control" formControlName="cepF" placeholder="CEP">
   </div>
 
 
-  <div class="form-field">
-    <input type="number" formControlName="Telefone" placeholder="Telefone">
-  </div>
 
-  <div class="form-field">
-    <input type="text" formControlName="CEP" placeholder="CEP">
-  </div>
+
 
   <!-- Repita para os outros campos -->
 
