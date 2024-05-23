@@ -1,11 +1,14 @@
 
 
-
 form {
   background-color: #fff;
   padding: 20px;
+  padding-top: 200px /* altura do seu cabeçalho aqui */;
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 720px;
+  height: 1000px;
+  overflow: auto;
 }
 
 

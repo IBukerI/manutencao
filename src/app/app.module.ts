@@ -19,6 +19,7 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { ClientesMockService } from './clientes/clientes-mock.service';
 import { CadastroComponentComponent } from './cadastro-component/cadastro-component.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 
 
@@ -47,11 +48,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatDialogModule,
     HttpClientModule,
+    NgxMaskDirective,
+
 
 
 
   ],
-  providers: [ClientesMockService],
+  providers: [ClientesMockService, provideNgxMask()],
   bootstrap: [AppComponent]
 
 })

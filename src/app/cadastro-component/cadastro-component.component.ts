@@ -1,8 +1,12 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ConsultaCnpjService } from '../consulta-cnpj.service';
+import  Swal from 'sweetalert2';
+import { MaskService } from '../mask.service';
+import { ConsultacepService } from '../consultacep.service';
 
 
 
@@ -17,16 +21,23 @@ export class CadastroComponentComponent implements OnInit {
       tipo: ['Pessoa Física'],
       nome: [''],
       sobrenome: [''],
-      cpf: [''],
+      cpf: ['', [Validators.required]],
       razaoSocial: [''],
       nomeFantasia: [''],
       cnpj: ['', [Validators.minLength(14), Validators.required]],
-      cepj: [''],
-      cepF: [''],
+      cep: [''],
       telefone: [''],
+      telefoneCelular: [''],
+      logradouro: [''],
+      numero: [''],
+      bairro: [''],
+      cidade: [''],
+      estado: [''],
+      complemento: [''],
     });
 
-  constructor(private fb: FormBuilder, private router: Router, private consultaCnpjService: ConsultaCnpjService) { }
+  constructor(private fb: FormBuilder, private router: Router, private consultaCnpjService: ConsultaCnpjService,
+    private ConsultacepService: ConsultacepService, public maskService: MaskService) { }
 
   ngOnInit() {
     // código de inicialização aqui...
@@ -78,14 +89,54 @@ export class CadastroComponentComponent implements OnInit {
 
           this.form.get('razaoSocial')?.setValue(data.razao_social);
           this.form.get('nomeFantasia')?.setValue(data.nome_fantasia);
-          this.form.get('cepj')?.setValue(data.cep);
+          this.form.get('cep')?.setValue(data.cep);
         },
         error => {
+          Swal.fire({
+            title: 'CNPJ Invalido!',
+            text: 'Por Favor, Digite um CNPJ válido.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#f39d19',
+          })
           console.error('Erro ao buscar dados do CNPJ:', error);
         }
       );
     }
-
   }
+
+
+  buscarDadosCep() {
+    const cep = this.form.get('cep')?.value;
+      if (cep) {
+        this.ConsultacepService.buscarCep(cep).subscribe(
+          data => {
+            console.log('Dados do CEP:', data);
+
+            // Atualize os campos do formulário com os dados retornados
+            // Substitua 'logradouro', 'bairro', etc. pelos nomes reais dos campos retornados pelo seu serviço
+            this.form.get('logradouro')?.setValue(data.street);
+            this.form.get('bairro')?.setValue(data.neighborhood);
+            this.form.get('cidade')?.setValue(data.city);
+            this.form.get('estado')?.setValue(data.state);
+          },
+          error => {
+            Swal.fire({
+              title: 'CEP Inválido!',
+              text: 'Por Favor, Digite um CEP válido.',
+              icon: 'error',
+              confirmButtonText: 'OK',
+              confirmButtonColor: '#f39d19',
+            })
+            console.error('Erro ao buscar dados do CEP:', error);
+          }
+        );
+      }
+    }
+
+
+
+
+
 
 }
