@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import * as validator from 'validator';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,16 @@ export class MaskService {
   public cep = '00000-000';
   public cpf = '000.000.000-00';
   public cnpj = '00.000.000/0000-00';
+
+
+
+  validaEmail(email: string) {
+    if (validator.isEmail(email)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   constructor() { }
 }

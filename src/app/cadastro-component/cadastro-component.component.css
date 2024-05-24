@@ -46,3 +46,9 @@ input.ng-invalid.ng-touched {
 .form-group .btn {
   margin: 0 10px; /* Adiciona uma margem de 10px à esquerda e à direita de cada botão */
 }
+
+
+
+button:disabled {
+  cursor: not-allowed;
+}

@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,6 +6,7 @@ import { ConsultaCnpjService } from '../consulta-cnpj.service';
 import  Swal from 'sweetalert2';
 import { MaskService } from '../mask.service';
 import { ConsultacepService } from '../consultacep.service';
+import { ValidaCpfService } from '../valida-cpf.service';
 
 
 
@@ -16,6 +16,9 @@ import { ConsultacepService } from '../consultacep.service';
   styleUrls: ['./cadastro-component.component.css']
 })
 export class CadastroComponentComponent implements OnInit {
+  cpfInvalido: boolean = false;
+  cepInvalido: boolean = false;
+  emailInvalido: boolean = false;
 
   form: FormGroup = this.fb.group({
       tipo: ['Pessoa Física'],
@@ -34,10 +37,12 @@ export class CadastroComponentComponent implements OnInit {
       cidade: [''],
       estado: [''],
       complemento: [''],
+      email: ['', [Validators.required]],
+
     });
 
   constructor(private fb: FormBuilder, private router: Router, private consultaCnpjService: ConsultaCnpjService,
-    private ConsultacepService: ConsultacepService, public maskService: MaskService) { }
+    private ConsultacepService: ConsultacepService, public maskService: MaskService, public ValidaCpfService: ValidaCpfService) { }
 
   ngOnInit() {
     // código de inicialização aqui...
@@ -75,8 +80,21 @@ export class CadastroComponentComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      console.log('Formulário válido:', this.form.value)
-      // Aqui você pode adicionar o código para enviar os dados do formulário
+      Swal.fire({
+        title: 'Formulário Salvo com Sucesso!',
+        text: 'Parabéns Você Salvou seu Cliente.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#00FF00',
+      })
+    } else {
+      Swal.fire({
+        title: 'Formulário Inválido!',
+        text: 'Por Favor, Preencha todos os campos obrigatórios.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#f39d19',
+      })
     }
   }
 
@@ -85,11 +103,15 @@ export class CadastroComponentComponent implements OnInit {
     if (cnpj) {
       this.consultaCnpjService.buscarDadosCNPJ(cnpj).subscribe(
         data => {
-          console.log('Dados do CNPJ:', data);
+
 
           this.form.get('razaoSocial')?.setValue(data.razao_social);
           this.form.get('nomeFantasia')?.setValue(data.nome_fantasia);
           this.form.get('cep')?.setValue(data.cep);
+          if (data.cep) {
+            this.buscarDadosCep();
+          }
+
         },
         error => {
           Swal.fire({
@@ -99,44 +121,54 @@ export class CadastroComponentComponent implements OnInit {
             confirmButtonText: 'OK',
             confirmButtonColor: '#f39d19',
           })
-          console.error('Erro ao buscar dados do CNPJ:', error);
         }
       );
     }
   }
-
 
   buscarDadosCep() {
     const cep = this.form.get('cep')?.value;
       if (cep) {
         this.ConsultacepService.buscarCep(cep).subscribe(
           data => {
-            console.log('Dados do CEP:', data);
-
-            // Atualize os campos do formulário com os dados retornados
-            // Substitua 'logradouro', 'bairro', etc. pelos nomes reais dos campos retornados pelo seu serviço
             this.form.get('logradouro')?.setValue(data.street);
             this.form.get('bairro')?.setValue(data.neighborhood);
             this.form.get('cidade')?.setValue(data.city);
             this.form.get('estado')?.setValue(data.state);
           },
           error => {
-            Swal.fire({
-              title: 'CEP Inválido!',
-              text: 'Por Favor, Digite um CEP válido.',
-              icon: 'error',
-              confirmButtonText: 'OK',
-              confirmButtonColor: '#f39d19',
-            })
-            console.error('Erro ao buscar dados do CEP:', error);
+            this.cepInvalido = true;
           }
         );
       }
+  }
+
+  validaCpf() {
+    const cpf = this.form.get('cpf')?.value;
+    if (cpf) {
+      if (!this.ValidaCpfService.validaCPF(cpf)) {
+          this.cpfInvalido = true;
+        } else {
+          this.cpfInvalido = false;
+        }
+      }
+  }
+
+  validaEmail() {
+    const email = this.form.get('email')?.value;
+    if (email) {
+      if(!this.maskService.validaEmail(email)) {
+        this.emailInvalido = true;
+      }
     }
-
-
-
-
-
+  }
 
 }
+
+
+
+
+
+
+
+
