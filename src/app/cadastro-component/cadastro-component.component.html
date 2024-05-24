@@ -55,7 +55,7 @@
 
   <div class="form-group">
     <label for="email">E-mail</label>
-    <input type="text" id="email" class="form-control" formControlName="email" placeholder="E-mail">
+    <input type="text" id="email" class="form-control" formControlName="email" placeholder="E-mail" (blur)="validaEmail()">
     <div *ngIf="emailInvalido" class="alert alert-danger">E-mail Inválido! Por favor, digite um e-mail válido.</div>
     <div *ngif="form.get('email')?.ivalid && form.get('email')?.touched" class="alert alert-danger">Campo e-mail é obrigatório.</div>
   </div>
